@@ -11,6 +11,8 @@ namespace TrackerLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
+        private const string dbName = "Tournaments";
+
         /// TODO - Make the createPrize method actually save to the database
         /// <summary>
         /// Saves a new prize to the database
@@ -19,11 +21,7 @@ namespace TrackerLibrary.DataAccess
         /// <returns>The prize information, including the unique identifier</returns>
         public PrizeModel CreatePrize(PrizeModel model)
         {
-            // TODO: Move this config back to App.Config
-            string connString = "Server=TIKVAH;Database=TournamentDB;Trusted_Connection=True;";
-
-            // using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnString("Tournaments")))
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connString))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnString(dbName)))
             {
                 var p = new DynamicParameters();
                 p.Add("@PlaceNumber", model.PlaceNumber);
@@ -31,7 +29,6 @@ namespace TrackerLibrary.DataAccess
                 p.Add("@PrizeAmount", model.PrizeAmount);
                 p.Add("@PrizePercentage", model.PrizePercentage);
                
-                // TODO: asdf
                 p.Add("@PrizeID", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                 connection.Execute("dbo.spPrizes_Insert", p, commandType: CommandType.StoredProcedure);
@@ -39,6 +36,38 @@ namespace TrackerLibrary.DataAccess
                 model.PrizeID = p.Get<int>("@PrizeID");
             }
             return null;
+        }
+
+        
+
+        public PersonModel CreatePerson(PersonModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnString(dbName)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@FirstName", model.FirstName);
+                p.Add("@LastName", model.LastName);
+                p.Add("@EmailAddress", model.EmailAddress);
+                p.Add("@CellNumber", model.CellPhoneNumber);
+
+                p.Add("@PersonID", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spPerson_Insert", p, commandType: CommandType.StoredProcedure);
+
+                model.PersonID = p.Get<int>("@PersonID");
+            }
+            return null;
+        }
+
+        public List<PersonModel> GetPerson_All()
+        {
+            List<PersonModel> output;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnString(dbName)))
+            {
+                output = connection.Query<PersonModel>("dbo.spPeople_GetAll").ToList();
+            }
+
+            return output;
         }
     }
 }

@@ -17,7 +17,6 @@ namespace TrackerLibrary
             switch (dbType)
             {
                 case DatabaseType.Sql:
-                    // TODO: Setup the SQL Connector properly
                     SqlConnector sql = new SqlConnector();
                     Connection = sql;
                     break;

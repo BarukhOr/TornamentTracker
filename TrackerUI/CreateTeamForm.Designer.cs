@@ -58,7 +58,6 @@
             this.teamNameLabel.Size = new System.Drawing.Size(186, 45);
             this.teamNameLabel.TabIndex = 0;
             this.teamNameLabel.Text = "Team Name:";
-            this.teamNameLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // teamNameTextBox
             // 
@@ -92,6 +91,7 @@
             this.addMemberButton.TabIndex = 4;
             this.addMemberButton.Text = "Add Member";
             this.addMemberButton.UseVisualStyleBackColor = true;
+            this.addMemberButton.Click += new System.EventHandler(this.addMemberButton_Click);
             // 
             // firstNameLabel
             // 
@@ -101,7 +101,6 @@
             this.firstNameLabel.Size = new System.Drawing.Size(165, 45);
             this.firstNameLabel.TabIndex = 6;
             this.firstNameLabel.Text = "First Name";
-            this.firstNameLabel.Click += new System.EventHandler(this.label4_Click);
             // 
             // firstNameTextBox
             // 
@@ -116,7 +115,6 @@
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(249, 50);
             this.lastNameTextBox.TabIndex = 9;
-            this.lastNameTextBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // lastNameLabel
             // 
@@ -142,7 +140,6 @@
             this.emailLabel.Size = new System.Drawing.Size(92, 45);
             this.emailLabel.TabIndex = 10;
             this.emailLabel.Text = "Email";
-            this.emailLabel.Click += new System.EventHandler(this.label6_Click);
             // 
             // cellphoneTextBox
             // 
@@ -168,21 +165,23 @@
             this.createMemberButton.TabIndex = 14;
             this.createMemberButton.Text = "Create New Member";
             this.createMemberButton.UseVisualStyleBackColor = true;
+            this.createMemberButton.Click += new System.EventHandler(this.createMemberButton_Click);
             // 
             // removeMemberButton
             // 
-            this.removeMemberButton.Location = new System.Drawing.Point(728, 944);
+            this.removeMemberButton.Location = new System.Drawing.Point(1096, 406);
             this.removeMemberButton.Name = "removeMemberButton";
-            this.removeMemberButton.Size = new System.Drawing.Size(365, 59);
+            this.removeMemberButton.Size = new System.Drawing.Size(295, 104);
             this.removeMemberButton.TabIndex = 16;
-            this.removeMemberButton.Text = "Remove Selected Button";
+            this.removeMemberButton.Text = "Remove Selected Member";
             this.removeMemberButton.UseVisualStyleBackColor = true;
+            this.removeMemberButton.Click += new System.EventHandler(this.removeMemberButton_Click);
             // 
             // createTeamButton
             // 
-            this.createTeamButton.Location = new System.Drawing.Point(499, 1073);
+            this.createTeamButton.Location = new System.Drawing.Point(712, 856);
             this.createTeamButton.Name = "createTeamButton";
-            this.createTeamButton.Size = new System.Drawing.Size(217, 59);
+            this.createTeamButton.Size = new System.Drawing.Size(253, 59);
             this.createTeamButton.TabIndex = 17;
             this.createTeamButton.Text = "Create Team";
             this.createTeamButton.UseVisualStyleBackColor = true;
@@ -209,13 +208,12 @@
             this.addNewMemberGroupBox.Controls.Add(this.emailLabel);
             this.addNewMemberGroupBox.Controls.Add(this.cellphoneTextBox);
             this.addNewMemberGroupBox.Controls.Add(this.emailTextBox);
-            this.addNewMemberGroupBox.Location = new System.Drawing.Point(31, 547);
+            this.addNewMemberGroupBox.Location = new System.Drawing.Point(30, 484);
             this.addNewMemberGroupBox.Name = "addNewMemberGroupBox";
             this.addNewMemberGroupBox.Size = new System.Drawing.Size(577, 456);
             this.addNewMemberGroupBox.TabIndex = 19;
             this.addNewMemberGroupBox.TabStop = false;
             this.addNewMemberGroupBox.Text = "Add New Member";
-            this.addNewMemberGroupBox.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // teamMemberListBox
             // 
@@ -223,14 +221,14 @@
             this.teamMemberListBox.ItemHeight = 45;
             this.teamMemberListBox.Location = new System.Drawing.Point(639, 114);
             this.teamMemberListBox.Name = "teamMemberListBox";
-            this.teamMemberListBox.Size = new System.Drawing.Size(519, 814);
+            this.teamMemberListBox.Size = new System.Drawing.Size(451, 724);
             this.teamMemberListBox.TabIndex = 20;
             // 
             // CreateTeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 45F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1206, 1169);
+            this.ClientSize = new System.Drawing.Size(1430, 978);
             this.Controls.Add(this.teamMemberListBox);
             this.Controls.Add(this.addNewMemberGroupBox);
             this.Controls.Add(this.headerLabel);
@@ -245,7 +243,6 @@
             this.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.Name = "CreateTeamForm";
             this.Text = "Create Team Form";
-            this.Load += new System.EventHandler(this.CreateTeamForm_Load);
             this.addNewMemberGroupBox.ResumeLayout(false);
             this.addNewMemberGroupBox.PerformLayout();
             this.ResumeLayout(false);
